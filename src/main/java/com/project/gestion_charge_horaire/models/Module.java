@@ -1,5 +1,6 @@
 package com.project.gestion_charge_horaire.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -25,6 +26,7 @@ public class Module {
     private int vh_tp;
     private int evaluation;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "module")
     public List<Intervention> interventions;
 

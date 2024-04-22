@@ -1,5 +1,6 @@
 package com.project.gestion_charge_horaire.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -20,6 +21,7 @@ public class Filiere {
     @Id
     private String nomFiliere;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "filiere")
     public List<Module> modules;
 }
