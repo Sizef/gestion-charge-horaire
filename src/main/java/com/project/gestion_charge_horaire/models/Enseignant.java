@@ -23,6 +23,8 @@ public class Enseignant {
     private String email;
     private String nom;
     private String prenom;
+    private String password;
+    private String role;
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant", cascade = CascadeType.MERGE)

@@ -17,4 +17,6 @@ public interface InterventionRepository extends JpaRepository<Intervention, Stri
 
     List<Intervention> findInterventionByModule(Module module);
 
+
+
 }

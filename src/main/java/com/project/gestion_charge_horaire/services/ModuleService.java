@@ -20,11 +20,11 @@ public class ModuleService {
         return moduleRepository.findModulesByFiliere(filiere);
     }
 
-    public String getModules() {
-        if(moduleRepository.findAll().toArray().length == 0){
-            return "There is no Modules in the database";
-        }else {
-            return "There are " + moduleRepository.findAll().toArray().length + " Modules";
-        }
+    public List<Module> getModules() {
+        return moduleRepository.findAll();
+    }
+
+    public int nombreModulesByFiliere(Filiere filiere) {
+        return moduleRepository.countModulesByFiliere(filiere);
     }
 }

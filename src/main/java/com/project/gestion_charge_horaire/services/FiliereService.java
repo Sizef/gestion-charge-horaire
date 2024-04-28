@@ -16,4 +16,8 @@ public class FiliereService {
     public List<Filiere> findAllFilieres() {
         return filiereRepository.findAll();
     }
+
+
+
+
 }

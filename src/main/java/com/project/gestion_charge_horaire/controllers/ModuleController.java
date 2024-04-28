@@ -6,6 +6,8 @@ import com.project.gestion_charge_horaire.repositories.FiliereRepository;
 import com.project.gestion_charge_horaire.repositories.ModuleRepository;
 import com.project.gestion_charge_horaire.services.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +19,17 @@ public class ModuleController {
     @Autowired
     private ModuleService moduleService;
 
-    // get all enseignants
+    // get all modules
     @GetMapping("/modules")
-    public String getAllModules(){
-        return moduleService.getModules();
+    public ResponseEntity<?> getAllModules() {
+        List<Module> modules = moduleService.getModules();
+
+        // Vérifiez si les modules existent
+        if (modules != null && !modules.isEmpty()) {
+            return new ResponseEntity<>(modules, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Aucun module trouvé", HttpStatus.NOT_FOUND);
+        }
     }
 
 
