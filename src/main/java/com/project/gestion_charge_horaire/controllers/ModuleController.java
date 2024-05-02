@@ -4,6 +4,7 @@ import com.project.gestion_charge_horaire.models.Filiere;
 import com.project.gestion_charge_horaire.models.Module;
 import com.project.gestion_charge_horaire.repositories.FiliereRepository;
 import com.project.gestion_charge_horaire.repositories.ModuleRepository;
+import com.project.gestion_charge_horaire.services.InterventionService;
 import com.project.gestion_charge_horaire.services.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +19,13 @@ public class ModuleController {
 
     @Autowired
     private ModuleService moduleService;
+    @Autowired
+    private InterventionService interventionService;
 
     // get all modules
     @GetMapping("/modules")
     public ResponseEntity<?> getAllModules() {
         List<Module> modules = moduleService.getModules();
-
         // Vérifiez si les modules existent
         if (modules != null && !modules.isEmpty()) {
             return new ResponseEntity<>(modules, HttpStatus.OK);

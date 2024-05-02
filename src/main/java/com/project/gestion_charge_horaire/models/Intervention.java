@@ -1,5 +1,6 @@
 package com.project.gestion_charge_horaire.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

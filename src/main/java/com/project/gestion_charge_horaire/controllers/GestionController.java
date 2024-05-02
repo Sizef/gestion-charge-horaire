@@ -6,8 +6,13 @@ import com.project.gestion_charge_horaire.repositories.EnseignantRepository;
 import com.project.gestion_charge_horaire.repositories.FiliereRepository;
 import com.project.gestion_charge_horaire.repositories.InterventionRepository;
 import com.project.gestion_charge_horaire.repositories.ModuleRepository;
+import com.project.gestion_charge_horaire.services.EnseignantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
@@ -26,6 +31,8 @@ public class GestionController {
 
     @Autowired
     InterventionRepository interventionRepository;
+    @Autowired
+    private EnseignantService enseignantService;
 
 
     // create new objects
@@ -70,4 +77,16 @@ public class GestionController {
 
         return "success";
     }
+
+   // @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+//        Enseignant enseignant = enseignantService.findByEmail(loginRequest.getEmail());
+//        if (enseignant != null && loginRequest.getPassword().equals(enseignant.getPassword())) {
+//            String token = tokenProvider.createToken(enseignant.getEmail(), enseignant.getRole());
+//            return ResponseEntity.ok(token);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+//        }
+//    }
+
 }

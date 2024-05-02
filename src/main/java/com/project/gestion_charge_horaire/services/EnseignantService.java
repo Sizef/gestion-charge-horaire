@@ -8,8 +8,7 @@ import com.project.gestion_charge_horaire.repositories.EnseignantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EnseignantService {
@@ -31,17 +30,25 @@ public class EnseignantService {
 
     public int nombreEnseignantsByFiliere(Filiere filiere) {
         List<Module> modules = moduleService.findModulesByFiliere(filiere);
+        Set<Enseignant> enseignants = new HashSet<>();
         List<Intervention> interventions = new ArrayList<>();
         for (Module module : modules) {
             interventions.addAll(interventionService.findInterventionByModuleIntitule(module.getIntitule()));
         }
-        List<Enseignant> enseignants = new ArrayList<>();
         for (Intervention intervention : interventions) {
             enseignants.add(intervention.getEnseignant());
         }
-        return enseignants.size();    }
+        return enseignants.size();
+    }
 
 
+    public Enseignant enseignantInfos(String email) {
+        return enseignantRepository.findByEmail(email);
+    }
+
+//    public List<Enseignant> findAllEnseignantsWithRoles() {
+//        return enseignantRepository.findAllEnseignantsWithRoles();
+//    }
 
     public String getEnseignants() {
         if(enseignantRepository.findAll().toArray().length == 0){

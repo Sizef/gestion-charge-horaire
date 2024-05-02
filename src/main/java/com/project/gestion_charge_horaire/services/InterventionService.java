@@ -18,7 +18,7 @@ public class InterventionService {
         return interventionRepository.findInterventionByModuleIntitule(intitule);
     }
 
-    public List<Intervention> findInterventionByModule(Module module) {
-        return interventionRepository.findInterventionByModule(module);
+    public List<Intervention> findInterventionsByModule(Module module) {
+        return interventionRepository.findInterventionsByModule(module);
     }
 }

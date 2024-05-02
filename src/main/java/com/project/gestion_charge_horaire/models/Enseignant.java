@@ -1,6 +1,7 @@
 package com.project.gestion_charge_horaire.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,9 +25,12 @@ public class Enseignant {
     private String nom;
     private String prenom;
     private String password;
-    private String role;
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant", cascade = CascadeType.MERGE)
     public List<Intervention> interventions;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "enseignant" , cascade = CascadeType.MERGE)
+    private List<Role> roles;
 }

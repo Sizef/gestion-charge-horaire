@@ -18,7 +18,9 @@ public interface EnseignantRepository extends JpaRepository<Enseignant, String> 
 
     public Enseignant findByEmailAndInterventionsNot(String email, List<Intervention> interventions);
 
-    public Enseignant findByEmail(@Param("email") String email);
+    public Enseignant findByEmail(String email);
+
+    //public List<Enseignant> findAllEnseignantsWithRoles();
 
     public int countDistinctByInterventions(List<Intervention> interventions);
 

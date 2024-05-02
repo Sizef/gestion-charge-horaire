@@ -65,20 +65,17 @@ public class FiliereController {
     public List<FiliereInfos> getFilieres() {
         // tous les filières
         List<Filiere> filieres = filiereService.findAllFilieres();
-        System.out.println(filieres.size());
-        //filière infos
-
         //list d'infos
         List<FiliereInfos> filiereInfosList = new ArrayList<>();
 
         for(Filiere filiere : filieres) {
+            //filière infos
             FiliereInfos filiereInfos = new FiliereInfos();
             filiereInfos.setNom(filiere.getNomFiliere());
             filiereInfos.setNbreModules(moduleService.nombreModulesByFiliere(filiere));
             filiereInfos.setNbreEnseignants(enseignantService.nombreEnseignantsByFiliere(filiere));
             filiereInfosList.add(filiereInfos);
         }
-
         return filiereInfosList;
 
     }
