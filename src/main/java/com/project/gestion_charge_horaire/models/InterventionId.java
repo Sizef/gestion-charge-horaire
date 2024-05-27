@@ -14,10 +14,11 @@ public class InterventionId implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Column(name="intitule")
-    public String intitule;
+    @Column(name="id_module")
+    public Long id_module;
 
-    @Column(name="email")
-    public String email;
+    @Column(name="id_enseignant")
+    public Long id_enseignant;
+
 
 }

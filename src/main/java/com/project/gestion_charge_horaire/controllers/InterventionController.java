@@ -2,7 +2,6 @@ package com.project.gestion_charge_horaire.controllers;
 
 import com.project.gestion_charge_horaire.models.Enseignant;
 import com.project.gestion_charge_horaire.models.Intervention;
-import com.project.gestion_charge_horaire.models.Module;
 import com.project.gestion_charge_horaire.outils.InterventionDetails;
 import com.project.gestion_charge_horaire.repositories.InterventionRepository;
 import com.project.gestion_charge_horaire.services.EnseignantService;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class InterventionController {
 
     @Autowired

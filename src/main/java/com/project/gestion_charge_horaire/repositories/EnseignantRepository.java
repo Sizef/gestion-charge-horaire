@@ -14,11 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface EnseignantRepository extends JpaRepository<Enseignant, String> {
+public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
 
     public Enseignant findByEmailAndInterventionsNot(String email, List<Intervention> interventions);
 
-    public Enseignant findByEmail(String email);
+    Enseignant findByEmail(String email);
+
+    Enseignant findByEmailAndPassword(String email , String password);
 
     //public List<Enseignant> findAllEnseignantsWithRoles();
 

@@ -21,4 +21,10 @@ public class InterventionService {
     public List<Intervention> findInterventionsByModule(Module module) {
         return interventionRepository.findInterventionsByModule(module);
     }
+
+    public void deleteInterventionByModule(Module module) {
+        interventionRepository.deleteInterventionByModule(module);
+//        List<Intervention> interventions = this.findInterventionsByModule(module);
+//        interventionRepository.deleteAll(interventions);
+    }
 }

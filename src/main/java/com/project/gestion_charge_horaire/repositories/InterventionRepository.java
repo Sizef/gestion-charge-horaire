@@ -2,6 +2,7 @@ package com.project.gestion_charge_horaire.repositories;
 
 import com.project.gestion_charge_horaire.models.Enseignant;
 import com.project.gestion_charge_horaire.models.Intervention;
+import com.project.gestion_charge_horaire.models.InterventionId;
 import com.project.gestion_charge_horaire.models.Module;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface InterventionRepository extends JpaRepository<Intervention, String> {
+public interface InterventionRepository extends JpaRepository<Intervention, InterventionId> {
 
     List<Intervention> findInterventionByModuleIntitule(String intitule);
 
@@ -17,6 +18,9 @@ public interface InterventionRepository extends JpaRepository<Intervention, Stri
 
     List<Intervention> findInterventionsByModule(Module module);
 
+    void deleteInterventionByModule(Module module);
 
+    boolean existsByModule_Id(Long module_id);
 
+    void deleteInterventionsByModule_Id(Long module_id);
 }

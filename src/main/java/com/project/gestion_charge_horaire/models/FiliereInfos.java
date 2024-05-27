@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class FiliereInfos {
 
+    private Long id;
     private String nom;
     private int nbreModules;
     private int nbreEnseignants;

@@ -24,12 +24,16 @@ public class EnseignantService {
         return enseignantRepository.findByEmail(email);
     }
 
+    public Enseignant findByEmailAndPassword(String email , String password) {
+        return enseignantRepository.findByEmailAndPassword(email , password);
+    }
+
     public List<Enseignant> findAll() {
         return enseignantRepository.findAll();
     }
 
     public int nombreEnseignantsByFiliere(Filiere filiere) {
-        List<Module> modules = moduleService.findModulesByFiliere(filiere);
+        List<Module> modules = moduleService.getModulesByFiliere(filiere);
         Set<Enseignant> enseignants = new HashSet<>();
         List<Intervention> interventions = new ArrayList<>();
         for (Module module : modules) {

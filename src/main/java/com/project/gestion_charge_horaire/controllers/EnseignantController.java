@@ -18,6 +18,7 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class EnseignantController {
 
     @Autowired
@@ -32,31 +33,13 @@ public class EnseignantController {
 
     @PostMapping("/login")
     public Enseignant login(@RequestBody String[] body) {
-        Enseignant enseignant = new Enseignant();
         String email = body[0];
         String password = body[1];
-        System.out.println(password);
-        for (Enseignant e : enseignantService.findAll()) {
-            String email2 = e.getEmail();
-            String password2 = e.getPassword();
-            //System.out.println(password2);
-            boolean AreEqual = (email2.equals(email));
-            boolean AreEqual2 = (password2.equals(password));
-            //System.out.println(AreEqual2);
-            if (AreEqual && AreEqual2) {
-                enseignant.setEmail(e.getEmail());
-                enseignant.setNom(e.getNom());
-                enseignant.setPrenom(e.getPrenom());
-                enseignant.setPassword(e.getPassword());
-            }
-        }
-        System.out.println(enseignant.getPassword());
-        return enseignant;
-
+        return enseignantService.findByEmailAndPassword(email , password);
     }
 
     @PostMapping("/enseignant/infos")
-    public Enseignant getEnseignants(@RequestBody String email) {
+    public Enseignant getEnseignant(@RequestBody String email) {
         return enseignantService.enseignantInfos(email);
     }
 
@@ -88,7 +71,7 @@ public class EnseignantController {
     // get enseignants by filiere
     @PostMapping("/filiere/enseignants")
     public List<Enseignant> findEnseignantsByFiliere(@RequestBody Filiere filiere) {
-        List<Module> modules = moduleService.findModulesByFiliere(filiere);
+        List<Module> modules = moduleService.getModulesByFiliere(filiere);
         List<Intervention> interventions = new ArrayList<>();
         for (Module module : modules) {
             interventions.addAll(interventionService.findInterventionByModuleIntitule(module.getIntitule()));

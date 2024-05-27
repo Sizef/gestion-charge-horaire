@@ -10,13 +10,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ModuleRepository extends JpaRepository<Module, String> {
+public interface ModuleRepository extends JpaRepository<Module, Long> {
 
-    List<Module> findModulesByFiliere(Filiere filiere);
+    List<Module> getModulesByFiliere(Filiere filiere);
 
-    public int countModulesByFiliere(@NonNull Filiere filiere);
+    int countModulesByFiliere(@NonNull Filiere filiere);
 
+    boolean existsModuleByIntitule(@NonNull String intitule);
 
+    boolean existsModuleById(@NonNull Long id);
 
 
 }

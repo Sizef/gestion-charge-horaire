@@ -10,11 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface FiliereRepository extends JpaRepository<Filiere, String> {
+public interface FiliereRepository extends JpaRepository<Filiere, Long> {
 
     @NonNull
     @Override
     public List<Filiere> findAll();
+
+    public boolean existsByNomFiliere(String nomFiliere);
+
+    public Optional<Filiere> findByNomFiliere(String nomFiliere);
 
 
 

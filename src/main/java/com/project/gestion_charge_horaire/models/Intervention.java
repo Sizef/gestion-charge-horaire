@@ -22,13 +22,13 @@ public class Intervention {
     private int evaluation_inetervention;
 
     @ManyToOne
-    @MapsId("intitule")
-    @JoinColumn(name="intitule")
+    @MapsId("id_module")
+    @JoinColumn(name="id_module")
     public Module module;
 
     @ManyToOne
-    @MapsId("email")
-    @JoinColumn(name="email")
+    @MapsId("id_enseignant")
+    @JoinColumn(name="id_enseignant")
     public Enseignant enseignant;
 
 }

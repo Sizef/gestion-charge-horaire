@@ -8,16 +8,12 @@ import com.project.gestion_charge_horaire.repositories.InterventionRepository;
 import com.project.gestion_charge_horaire.repositories.ModuleRepository;
 import com.project.gestion_charge_horaire.services.EnseignantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class GestionController {
 
     @Autowired
@@ -52,7 +48,7 @@ public class GestionController {
         module.setEvaluation(2);
         moduleRepository.save(module);
 
-        Optional<Filiere> filiereOptional = filiereRepository.findById("ISI");
+        Optional<Filiere> filiereOptional = filiereRepository.findById(1L);
         Filiere filiere = null;
         if (filiereOptional.isPresent()) {
             filiere = filiereOptional.get();
@@ -64,8 +60,8 @@ public class GestionController {
 
         Intervention intervention = new Intervention();
         InterventionId interventionId = new InterventionId();
-        interventionId.setEmail(enseignant.getEmail());  // Assuming you have getEmail() method in Enseignant
-        interventionId.setIntitule(module.getIntitule());      // Assuming you have getId() method in Module
+        interventionId.setId_enseignant(enseignant.getId());  // Assuming you have getEmail() method in Enseignant
+        interventionId.setId_module(module.getId());      // Assuming you have getId() method in Module
         intervention.setInterventionId(interventionId);
         intervention.setEnseignant(enseignant);
         intervention.setModule(module);

@@ -16,8 +16,8 @@ public class ModuleService {
     @Autowired
     ModuleRepository moduleRepository;
 
-    public List<Module> findModulesByFiliere(Filiere filiere) {
-        return moduleRepository.findModulesByFiliere(filiere);
+    public List<Module> getModulesByFiliere(Filiere filiere) {
+        return moduleRepository.getModulesByFiliere(filiere);
     }
 
     public List<Module> getModules() {

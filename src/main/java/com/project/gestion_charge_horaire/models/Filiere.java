@@ -1,9 +1,7 @@
 package com.project.gestion_charge_horaire.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +17,11 @@ import java.util.List;
 public class Filiere {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nomFiliere;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "filiere")
+    @OneToMany(mappedBy = "filiere" , cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Module> modules;
 }
