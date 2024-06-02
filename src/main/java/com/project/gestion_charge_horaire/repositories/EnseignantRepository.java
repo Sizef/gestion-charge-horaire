@@ -3,6 +3,7 @@ package com.project.gestion_charge_horaire.repositories;
 import com.project.gestion_charge_horaire.models.Enseignant;
 import com.project.gestion_charge_horaire.models.Filiere;
 import com.project.gestion_charge_horaire.models.Intervention;
+import com.project.gestion_charge_horaire.models.Role;
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,20 +17,21 @@ import java.util.Optional;
 @Repository
 public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
 
-    public Enseignant findByEmailAndInterventionsNot(String email, List<Intervention> interventions);
-
     Enseignant findByEmail(String email);
 
     Enseignant findByEmailAndPassword(String email , String password);
 
-    //public List<Enseignant> findAllEnseignantsWithRoles();
+    Long findIdByEmail(String email);
 
-    public int countDistinctByInterventions(List<Intervention> interventions);
+    Enseignant findTopByOrderByIdDesc();
 
+    int countDistinctByInterventions(List<Intervention> interventions);
 
-    public List<Enseignant> findEnseignantByInterventions_Empty();
+    boolean existsByEmail(String email);
 
-    public Enseignant findEnseignantsByInterventions(List<Intervention> interventions);
+    List<Enseignant> findEnseignantByInterventions_Empty();
+
+    Enseignant findEnseignantsByInterventions(List<Intervention> interventions);
 
 
 }

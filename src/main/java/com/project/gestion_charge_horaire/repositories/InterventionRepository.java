@@ -22,5 +22,9 @@ public interface InterventionRepository extends JpaRepository<Intervention, Inte
 
     boolean existsByModule_Id(Long module_id);
 
+    boolean existsByEnseignant_Id(Long enseignant_id);
+
     void deleteInterventionsByModule_Id(Long module_id);
+
+    void deleteInterventionsByEnseignant_Id(Long enseignant_id);
 }
