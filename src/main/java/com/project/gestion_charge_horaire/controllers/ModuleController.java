@@ -1,7 +1,9 @@
 package com.project.gestion_charge_horaire.controllers;
 
 import com.project.gestion_charge_horaire.models.Filiere;
+import com.project.gestion_charge_horaire.models.Intervention;
 import com.project.gestion_charge_horaire.models.Module;
+import com.project.gestion_charge_horaire.models.Module_interventions;
 import com.project.gestion_charge_horaire.outils.ModuleDetails;
 import com.project.gestion_charge_horaire.repositories.FiliereRepository;
 import com.project.gestion_charge_horaire.repositories.InterventionRepository;
@@ -105,6 +107,30 @@ public class ModuleController {
     }
 
 
+    @PostMapping("/module/interventions")
+    public Module_interventions getInterventionsPourModule(@RequestBody Map<String, Object> body) {
+        String moduleId = (String) body.get("moduleId");
+        System.err.println(moduleId);
+        Module_interventions module_interventions = new Module_interventions();
+        int sum_cours = 0, sum_tps = 0, sum_tds = 0, sum_evaluation = 0;
+        for(Intervention intervention : interventionRepository.findInterventionsByModule_Id(Long.valueOf(moduleId))) {
+            sum_evaluation = sum_evaluation + intervention.getEvaluation_inetervention();
+            sum_cours = sum_cours + intervention.getVh_cours_intervention();
+            sum_tds = sum_tds + intervention.getVh_td_inetervention();
+            sum_tps = sum_tps + intervention.getVh_tp_inetervention();
+        }
+
+        Optional<Module> Optmodule = moduleRepository.findById(Long.valueOf(moduleId));
+        if(Optmodule.isPresent()) {
+            Module module = Optmodule.get();
+            module_interventions.setVh_cours_intervention(module.getVh_cours() - sum_cours);
+            module_interventions.setEvaluation_inetervention(module.getEvaluation() - sum_evaluation);
+            module_interventions.setVh_td_inetervention(module.getVh_td() - sum_tds);
+            module_interventions.setVh_tp_inetervention(module.getVh_tp() - sum_tps);
+        }
+
+        return module_interventions;
+    }
 
 
 

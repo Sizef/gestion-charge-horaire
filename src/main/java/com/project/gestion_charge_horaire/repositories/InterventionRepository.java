@@ -4,6 +4,7 @@ import com.project.gestion_charge_horaire.models.Enseignant;
 import com.project.gestion_charge_horaire.models.Intervention;
 import com.project.gestion_charge_horaire.models.InterventionId;
 import com.project.gestion_charge_horaire.models.Module;
+import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -27,4 +28,11 @@ public interface InterventionRepository extends JpaRepository<Intervention, Inte
     void deleteInterventionsByModule_Id(Long module_id);
 
     void deleteInterventionsByEnseignant_Id(Long enseignant_id);
+
+    List<Intervention> findInterventionsByModule_Id(@NonNull Long id);
+
+
+    boolean existsByEnseignant_IdAndModule_Id(Long enseignant_id, Long module_id);
+
+    Intervention findByEnseignant_IdAndModule_Id(Long enseignant_id, Long module_id);
 }

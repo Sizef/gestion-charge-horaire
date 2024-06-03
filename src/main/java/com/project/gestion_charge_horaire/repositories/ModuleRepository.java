@@ -1,6 +1,7 @@
 package com.project.gestion_charge_horaire.repositories;
 
 import com.project.gestion_charge_horaire.models.Filiere;
+import com.project.gestion_charge_horaire.models.Intervention;
 import com.project.gestion_charge_horaire.models.Module;
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,7 +19,8 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
 
     boolean existsModuleByIntitule(@NonNull String intitule);
 
-    boolean existsModuleById(@NonNull Long id);
+    Module getModuleByIntitule(@NonNull String intitule);
+
 
 
 }

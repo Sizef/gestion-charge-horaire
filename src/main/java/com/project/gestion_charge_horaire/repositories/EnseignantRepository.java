@@ -33,5 +33,7 @@ public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
 
     Enseignant findEnseignantsByInterventions(List<Intervention> interventions);
 
+    Enseignant findEnseignantByNomAndPrenom(String nom, String prenom);
+
 
 }

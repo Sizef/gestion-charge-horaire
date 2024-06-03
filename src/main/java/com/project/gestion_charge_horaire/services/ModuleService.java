@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ModuleService {
@@ -20,8 +21,9 @@ public class ModuleService {
         return moduleRepository.getModulesByFiliere(filiere);
     }
 
-    public List<Module> getModules() {
-        return moduleRepository.findAll();
+    public Module getModuleById(Long id) {
+        Optional<Module> Opt = moduleRepository.findById(id);
+        return Opt.orElse(null);
     }
 
     public int nombreModulesByFiliere(Filiere filiere) {

@@ -61,4 +61,9 @@ public class EnseignantService {
             return "There are " + enseignantRepository.findAll().toArray().length + " Enseignants";
         }
     }
+
+    public Enseignant getEnseignantById(Long id) {
+        Optional<Enseignant> Opt = enseignantRepository.findById(id);
+        return Opt.orElse(null);
+    }
 }

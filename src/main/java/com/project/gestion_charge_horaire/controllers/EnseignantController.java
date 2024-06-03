@@ -136,10 +136,6 @@ public class EnseignantController {
         return null;
     }
 
-
-
-
-
 //    // get enseignants by filiere
 //    @PostMapping("/filiere/enseignants")
 //    public List<Enseignant> findEnseignantsByFiliere(@RequestBody Filiere filiere) {
